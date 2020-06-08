@@ -6,6 +6,7 @@ import { hoverEmitter } from './emitter/hover';
 import { tapbodyEmitter } from './emitter/tapbody'; 
 import { tapfaceEmitter } from './emitter/tapface'; 
 import { hitokotoVariable } from './variable/hitokoto';
+import { navigationVariable } from './variable/navigation';
 
 const dialogStyle = document.createElement('style');
 dialogStyle.innerHTML = `
@@ -14,8 +15,8 @@ dialogStyle.innerHTML = `
     height: 120px;
     position: absolute;
     bottom: 65%;
-    right: 0px;
-    transform-origin: right;
+    left: 0px;
+    transform-origin: left;
     padding: 12px;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -67,6 +68,7 @@ function createDialogElement(root) {
     scriptEngine.registerEmitter('tap face', tapfaceEmitter(L2Dwidget));
 
     scriptEngine.registerVariable('hitokoto', hitokotoVariable);
+    scriptEngine.registerVariable('navigation', navigationVariable(L2Dwidget));
     Object.keys(config.dialog.script).forEach(key => {
       scriptEngine.run(key, config.dialog.script[key]);
     });
